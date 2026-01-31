@@ -3,25 +3,39 @@ const noBtn = document.getElementById('noBtn');
 const message = document.getElementById('message');
 
 let noClicks = 0;
-let scale = 1;
+let noScale = 1;
+let yesScale = 1;
 
 yesBtn.addEventListener('click', () => {
+  // Show message
   message.style.display = 'block';
+
+  // Remove NO button completely
+  noBtn.style.display = 'none';
+
+  // Celebration
   launchFireworks();
 });
 
 noBtn.addEventListener('click', () => {
   noClicks++;
-  scale -= 0.15;
-  noBtn.style.transform = `scale(${scale})`;
 
+  // NO button shrinks
+  noScale -= 0.15;
+  noBtn.style.transform = `scale(${noScale})`;
+
+  // YES button grows confidently
+  yesScale += 0.15;
+  yesBtn.style.transform = `scale(${yesScale})`;
+
+  // NO button gives up after 5 clicks
   if (noClicks >= 5) {
     noBtn.style.display = 'none';
   }
 });
 
 function launchFireworks() {
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 18; i++) {
     const firework = document.createElement('div');
     firework.classList.add('firework');
     firework.style.left = Math.random() * 100 + 'vw';
@@ -33,7 +47,7 @@ function launchFireworks() {
   }
 }
 
-// Floating hearts generator
+// Floating hearts (unchanged, still doing the most)
 setInterval(() => {
   const heart = document.createElement('div');
   heart.classList.add('heart');
